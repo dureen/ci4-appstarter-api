@@ -1,44 +1,28 @@
 <?php
 
-namespace App\Database\Migrations;
+namespace App\Database\Seeds;
 
-use CodeIgniter\Database\Migration;
-use CodeIgniter\Database\RawSql;
+use CodeIgniter\Database\Seeder;
 
-class Product extends Migration
+class Product extends Seeder
 {
-    public function up()
+    public function run()
     {
-        $this->forge->addField([
-			'id' => [
-				'type'           => 'INT',
-				'constraint'     => 11,
-				'unsigned'       => true,
-				'auto_increment' => true,
-			],
-			'name' => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '255',
-			],
-			'price' => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '255',
-			],
-			'created_at' => [
-				'type'    => 'TIMESTAMP',
-        		'default' => new RawSql('CURRENT_TIMESTAMP'),
-			],
-			'updated_at' => [
-				'type'    => 'TIMESTAMP',
-        		'default' => new RawSql('CURRENT_TIMESTAMP'),
-			]
-		]);
-		$this->forge->addPrimaryKey('id');
-		$this->forge->createTable('products');
-    }
+        $data = [
+            [
+                'name'  => 'Laptop',
+                'price' => '15000000',
+            ],
+            [
+                'name'  => 'Smartphone',
+                'price' => '5000000',
+            ],
+            [
+                'name'  => 'Headphones',
+                'price' => '750000',
+            ],
+        ];
 
-    public function down()
-    {
-        $this->forge->dropTable('products');
+        $this->db->table('products')->insertBatch($data);
     }
 }

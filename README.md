@@ -1,39 +1,48 @@
-# CodeIgniter 4 REST API - Example 
+# CodeIgniter 4 REST API Starter
 
-## What is this?
+Simple CodeIgniter 4 REST API example with a Product resource.
 
-This is CodeIgniter 4 REST API example project
+## Requirements
 
-### Routes
+- PHP **8.2** or higher
+- Composer
+- CodeIgniter 4.7+
+
+## Installation
+
+```bash
+composer install
+cp env .env
+php spark key:generate
 ```
-$routes->group('api/v1', static function ($routes) {
-    $routes->resource('product', ['controller' => 'ProductController']);
-});
+
+Configure database in `.env`, then:
+
+```bash
+php spark migrate
+php spark db:seed Product
 ```
-Contains:
-| Method | Route                    | Handler                                       | Description            |
-| ------ | ------------------------ | --------------------------------------------- | ---------------------- |
-| GET    | /                        | \App\Controllers\Home::index                  | -                      |
-| GET    | api/v1/product           | \App\Controllers\ProductController::index     | List of product        |
-| GET    | api/v1/product/new       | \App\Controllers\ProductController::new       | -                      |
-| GET    | api/v1/product/(.*)/edit | \App\Controllers\ProductController::edit/$1   | -                      |
-| GET    | api/v1/product/(.*)      | \App\Controllers\ProductController::show/$1   | View a product         |
-| POST   | api/v1/product           | \App\Controllers\ProductController::create    | Create new product     |
-| PATCH  | api/v1/product/(.*)      | \App\Controllers\ProductController::update/$1 | Patch update a product |
-| PUT    | api/v1/product/(.*)      | \App\Controllers\ProductController::update/$1 | Put update a product   |
-| DELETE | api/v1/product/(.*)      | \App\Controllers\ProductController::delete/$1 | Delete a product       |
-| CLI    | ci(.*)                   | \CodeIgniter\CLI\CommandRunner::index/$1      | -                      |
 
+## API Endpoints
 
+Base group: `api/v1`
 
-## Installation, updates, and more setup
+| Method | Route                | Description          |
+|--------|----------------------|----------------------|
+| GET    | /api/v1/product      | List all products    |
+| GET    | /api/v1/product/{id} | Show single product  |
+| POST   | /api/v1/product      | Create product       |
+| PUT/PATCH | /api/v1/product/{id} | Update product    |
+| DELETE | /api/v1/product/{id} | Delete product       |
 
-Please read the original codeIgniter 4 [README](README-Origin.md)
+## Important note about upgrading
 
-## Happy Coding!
+This repository has been updated to require **PHP 8.2+** and **CodeIgniter ^4.7**.
+
+A full upgrade from the official [appstarter](https://github.com/codeigniter4/appstarter) is still recommended for production use because many internal configs and the system structure have changed since the original 4.0 / 4.4 base.
 
 ## License
-[MIT](LICENSE)
 
-### Support
-Buy me a coffee [Click here](https://ko-fi.com/sandw)
+MIT
+
+## Happy Coding!
